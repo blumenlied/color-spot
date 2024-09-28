@@ -8,6 +8,7 @@
 
 <main>
 	<h1>professional racist</h1>
+	<h1></h1>
 	<Board />
 </main>
 

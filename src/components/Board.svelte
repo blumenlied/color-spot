@@ -5,6 +5,8 @@
 	let circles = []; // Array to hold the circle objects
 	let hp = 5; // Initial HP
 	let score = 0; // Initial score
+	let gridWidth = 398;
+	let colorVar = 50;
 
 	// Function to generate a random base color in RGB format
 	function getRandomColor() {
@@ -18,7 +20,7 @@
 	function getSlightlyDifferentColor(baseColor) {
 		const colorValues = baseColor.match(/\d+/g).map(Number);
 		const variation = colorValues.map((value) => {
-			let newValue = value + Math.floor(Math.random() * 21) - 20; // ±10 variation
+			let newValue = value + Math.floor(Math.random() * 21) - colorVar; // ±10 variation
 			return Math.max(0, Math.min(255, newValue)); // Clamp between 0 and 255
 		});
 		return `rgb(${variation[0]}, ${variation[1]}, ${variation[2]})`;
@@ -57,6 +59,9 @@
 	function resetGame() {
 		score = 0;
 		hp = 5;
+		gridSize = 9;
+		gridWidth = 398;
+		colorVar = 50;
 		initializeCircles(); // Reinitialize circles
 	}
 
@@ -64,6 +69,14 @@
 		// Check if the clicked circle is the special one
 		if (circle.isSpecial) {
 			score += 1; // Increment score
+			if (score == 10) {
+				colorVar = 30;
+			} else if (score == 20) {
+				colorVar = 20;
+			} else if (score == 30) {
+				gridSize = 16;
+				gridWidth = 498;
+			}
 			initializeCircles(); // Reinitialize circles
 		} else {
 			hp -= 1; // Decrement HP
@@ -77,9 +90,9 @@
 	initializeCircles(); // Initialize circles on component load
 </script>
 
+<h1>{hp} HP | {score} SCORE</h1>
 <div class="main">
-	<h1>{hp} HP | {score} SCORE</h1>
-	<div class="board">
+	<div style="width: {gridWidth}px;" class="board">
 		{#each circles as circle}
 			<Circle color={circle.color} onClick={() => handleCircleClick(circle)} />
 		{/each}
@@ -96,15 +109,14 @@
 	}
 
 	.main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		align-content: center;
+		justify-items: center;
+		display: grid;
 		padding: 1em;
 	}
 	.board {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		width: 398px;
 	}
 </style>
