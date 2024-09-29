@@ -7,7 +7,7 @@
 </svelte:head>
 
 <main>
-	<h1>professional racist</h1>
+	<h1>are you a professional racist?</h1>
 	<h1></h1>
 	<Board />
 </main>

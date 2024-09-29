@@ -79,18 +79,18 @@
 			}
 			initializeCircles(); // Reinitialize circles
 		} else {
-			hp -= 1; // Decrement HP
-			if (hp <= 0) {
-				alert('Game Over! Final Score: ' + score);
-				resetGame();
-			}
+			// hp -= 1; // Decrement HP
+			// if (hp <= 0) {
+			alert('Game Over! Final Score: ' + score);
+			resetGame();
+			// }
 		}
 	}
 
 	initializeCircles(); // Initialize circles on component load
 </script>
 
-<h1>{hp} HP | {score} SCORE</h1>
+<h1>{score}</h1>
 <div class="main">
 	<div style="width: {gridWidth}px;" class="board">
 		{#each circles as circle}
@@ -104,8 +104,9 @@
 		margin: 0;
 		margin-bottom: 20px;
 		color: #ff3e00;
+		font-family: Arial, Helvetica, sans-serif;
 		font-size: 4em;
-		font-weight: 100;
+		font-weight: 1em;
 	}
 
 	.main {
