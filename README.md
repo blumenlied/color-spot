@@ -3,7 +3,7 @@
 
 my first web app! made with svelte. ai is replacing me fr.
 
-![preview][./preview.png]
+![preview](./preview.png)
 
 ## Try it
 
